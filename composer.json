@@ -11,7 +11,7 @@
   "require": {
     "php": ">=7.1",
     "funeralzone/valueobjects": ">=0.0",
-    "ramsey/uuid": "^3.6",
+    "ramsey/uuid": "^4.1",
     "league/uri": "^6.4",
     "moneyphp/money": "^3.3"
   },
