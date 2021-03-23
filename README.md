@@ -7,7 +7,7 @@ Some routine value objects for use with funeralzone/valueobjects.
 
 ## Requirements ##
 
-Requires PHP 7.1
+Requires PHP >=7.1
 
 ## Installation ##
 
@@ -23,7 +23,14 @@ This package provides some useful value object helpers for common values (e.g. U
 
 ## List of value object helpers ##
 
+* Date
+* Time
+* Email
+* ISO Alpha 2 Country Code
+* ISO Alpha 3 Country Code
+* Money
 * UUID
 * Generatable UUID
 * RFC3339 datetime
 * Uri
+* Array Defined Enum

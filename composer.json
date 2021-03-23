@@ -9,10 +9,10 @@
     }
   ],
   "require": {
-    "php": "^7.1",
+    "php": ">=7.1",
     "funeralzone/valueobjects": ">=0.0",
-    "ramsey/uuid": "^3.7",
-    "league/uri": "^5.2",
+    "ramsey/uuid": "^4.1",
+    "league/uri": "^5.3",
     "moneyphp/money": "3.0.*"
   },
   "require-dev": {
