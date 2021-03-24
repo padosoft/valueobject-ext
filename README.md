@@ -1,9 +1,6 @@
 # valueobject-extensions
 
-[![Build Status](https://travis-ci.org/funeralzone/valueobject-extensions.svg)](https://travis-ci.org/funeralzone/valueobject-extensions)
-[![Version](https://img.shields.io/packagist/v/funeralzone/valueobject-extensions.svg)](https://packagist.org/packages/funeralzone/valueobject-extensions)
-
-Some routine value objects for use with funeralzone/valueobjects.
+A collection of value objects based on funeralzone/valueobjects.
 
 ## Requirements ##
 
@@ -14,18 +11,26 @@ Requires PHP >=7.1
 Through Composer, obviously:
 
 ```
-composer require funeralzone/valueobject-extensions
+composer require padosoft/valueobject-ext
 ```
 
 ## Purpose ##
 
-This package provides some useful value object helpers for common values (e.g. UUIDs). It's for use in conjunction with the [funeralzone/valueobjects](https://github.com/funeralzone/valueobjects) package.
+This package provides some useful value object helpers for common values (e.g. UUIDs). 
+It's for use in conjunction with the [funeralzone/valueobjects](https://github.com/funeralzone/valueobjects) package.
 
 ## List of value object helpers ##
 
 * Date
 * Time
+* String
+* Nullable String
 * Email
+* Nullable Email
+* Email With Alias
+* Set Of Emails
+* Set Of Nullable Emails
+* Set Of Emails With Alias
 * ISO Alpha 2 Country Code
 * ISO Alpha 3 Country Code
 * Money
@@ -33,4 +38,6 @@ This package provides some useful value object helpers for common values (e.g. U
 * Generatable UUID
 * RFC3339 datetime
 * Uri
+* Nullable Uri
+* Set Of Uri
 * Array Defined Enum
