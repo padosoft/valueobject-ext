@@ -20,7 +20,7 @@ trait EmailNullableTrait
      */
     public function __construct(?string $string)
     {
-        if($string===null){
+        if ($string===null) {
             $this->string = null;
             return;
         }
@@ -46,7 +46,7 @@ trait EmailNullableTrait
      */
     public function isSame(ValueObject $object): bool
     {
-        if($this->string===null || $object->string===null){
+        if ($this->string===null || $object->string===null) {
             return $this->string===$object->string;
         }
         return ($this->toNative() === $object->toNative());
@@ -67,5 +67,35 @@ trait EmailNullableTrait
     public function toNative()
     {
         return $this->string;
+    }
+
+    /**
+     * Returns the local part of the email address.
+     *
+     * @return ?string
+     */
+    public function getLocalPart(): ?string
+    {
+        if ($this->toNative()===null) {
+            return null;
+        }
+        $parts = explode('@', $this->toNative());
+        return $parts[0];
+    }
+
+    /**
+     * Returns the domain part of the email address.
+     *
+     * @return ?Domain
+     */
+    public function getDomainPart(): ?Domain
+    {
+        if ($this->toNative()===null) {
+            return null;
+        }
+        $parts = \explode('@', $this->toNative());
+        $domain = \trim($parts[1], '[]');
+
+        return Domain::specifyType($domain);
     }
 }

@@ -31,8 +31,19 @@ It's for use in conjunction with the [funeralzone/valueobjects](https://github.c
 * Set Of Emails
 * Set Of Nullable Emails
 * Set Of Emails With Alias
+* Domain
+* Hostname
+* IPAddress
+* IPAddress V4
+* IPAddress V6
+* IPAddress Version
 * ISO Alpha 2 Country Code
 * ISO Alpha 3 Country Code
+* Money
+* Device
+* Device Version
+* Device With Unknown
+* Device Version With Unknown
 * Money
 * UUID
 * Generatable UUID
