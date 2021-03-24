@@ -28,7 +28,6 @@ final class SetOfEmailsVOTest extends TestCase
     public function test_from_string_instantiates_with_valid_string()
     {
         $test = SetOfEmailsVO::fromString('test@test.com;test2@test.com');
-        var_dump($test);
         $this->assertEquals($test[0]->toNative(), 'test@test.com');
         $this->assertEquals($test[1]->toNative(), 'test2@test.com');
     }

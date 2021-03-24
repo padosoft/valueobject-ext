@@ -58,4 +58,10 @@ final class SetOfEmailsWithAliasVOTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         SetOfEmailsWithAliasVO::fromString('invalid');
     }
+
+    public function test_toSimpleAssocArray()
+    {
+        $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\ntest2;test2@test.com");
+        $this->assertEquals($test->toSimpleAssocArray(), ['test@test.com'=>'test', 'test2@test.com'=>'test2']);
+    }
 }

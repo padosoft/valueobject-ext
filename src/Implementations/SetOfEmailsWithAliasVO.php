@@ -51,9 +51,23 @@ final class SetOfEmailsWithAliasVO extends NonNullSet
 
             $set = new static($arrEmailWithAlias);
             return $set;
-
         } catch (\Exception $exception) {
             throw new \InvalidArgumentException('Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"');
         }
+    }
+
+    /**
+     * Return simple array assoc. usefull to fill select.
+     *
+     * @return array ['email' => 'alias','email2' => 'alias2',...]
+     */
+    public function toSimpleAssocArray(): array
+    {
+        $arrFinal = [];
+        $arr = $this->toNative();
+        foreach ($arr as $item) {
+            $arrFinal[$item['email']] = $item['alias'];
+        }
+        return $arrFinal;
     }
 }
