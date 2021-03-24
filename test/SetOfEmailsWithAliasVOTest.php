@@ -59,9 +59,15 @@ final class SetOfEmailsWithAliasVOTest extends TestCase
         SetOfEmailsWithAliasVO::fromString('invalid');
     }
 
-    public function test_toSimpleAssocArray()
+    public function test_toSimpleEmailArray()
     {
         $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\ntest2;test2@test.com");
-        $this->assertEquals($test->toSimpleAssocArray(), ['test@test.com'=>'test', 'test2@test.com'=>'test2']);
+        $this->assertEquals($test->toSimpleEmailArray(), ['test@test.com','test2@test.com']);
+    }
+
+    public function test_toSimpleAliasArray()
+    {
+        $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\ntest2;test2@test.com");
+        $this->assertEquals($test->toSimpleAliasArray(), ['test','test2']);
     }
 }
