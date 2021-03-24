@@ -41,7 +41,9 @@ final class SetOfEmailsWithAliasVO extends NonNullSet
             //"alias1;email1\nalias2;email2\n.....aliasN;emailN"
             $arr = explode("\n", $string);
             if ($arr === false || !is_array($arr) || count($arr) < 1) {
-                throw new \InvalidArgumentException('Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"');
+                throw new \InvalidArgumentException(
+                    'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"'
+                );
             }
 
             $arrEmailWithAlias = [];
@@ -49,24 +51,55 @@ final class SetOfEmailsWithAliasVO extends NonNullSet
                 $arrEmailWithAlias[] = EmailWithAliasVO::fromString($value);
             }
 
-            $set = new static($arrEmailWithAlias);
-            return $set;
+            return new static($arrEmailWithAlias);
         } catch (\Exception $exception) {
-            throw new \InvalidArgumentException('Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"');
+            throw new \InvalidArgumentException(
+                'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"'
+            );
         }
     }
 
     /**
-     * Return simple array assoc. usefull to fill select.
+     * Return simple array assoc. useful to fill select.
      *
-     * @return array ['email' => 'alias','email2' => 'alias2',...]
+     * @return array ['alias;email' => 'alias <email>','email2;email2' => 'alias2 <email2>',...]
      */
     public function toSimpleAssocArray(): array
     {
         $arrFinal = [];
         $arr = $this->toNative();
         foreach ($arr as $item) {
-            $arrFinal[$item['email']] = $item['alias'];
+            $arrFinal[$item['alias'] . ';' . $item['email']] = $item['alias'] . ' <' . $item['email'] . '>';
+        }
+        return $arrFinal;
+    }
+
+    /**
+     * Return simple array of email.
+     *
+     * @return array ['email','email2',...]
+     */
+    public function toSimpleEmailArray(): array
+    {
+        $arrFinal = [];
+        $arr = $this->toNative();
+        foreach ($arr as $item) {
+            $arrFinal[] = $item['email'];
+        }
+        return $arrFinal;
+    }
+
+    /**
+     * Return simple array of alias.
+     *
+     * @return array ['alias','alias2',...]
+     */
+    public function toSimpleAliasArray(): array
+    {
+        $arrFinal = [];
+        $arr = $this->toNative();
+        foreach ($arr as $item) {
+            $arrFinal[] = $item['alias'];
         }
         return $arrFinal;
     }
