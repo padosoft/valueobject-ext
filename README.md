@@ -21,10 +21,14 @@ It's for use in conjunction with the [funeralzone/valueobjects](https://github.c
 
 ## List of value object helpers ##
 
+### DATETIME
 * Date
 * Time
+* RFC3339 datetime
+### STRING
 * String
 * Nullable String
+### INTERNET
 * Email
 * Nullable Email
 * Email With Alias
@@ -37,18 +41,27 @@ It's for use in conjunction with the [funeralzone/valueobjects](https://github.c
 * IPAddress V4
 * IPAddress V6
 * IPAddress Version
-* ISO Alpha 2 Country Code
-* ISO Alpha 3 Country Code
-* Money
+* Uri
+* Nullable Uri
+* Set Of Uri
 * Device
 * Device Version
 * Device With Unknown
 * Device Version With Unknown
+### INTERNATIONALIZATION  
+* ISO Alpha 2 Country Code
+* ISO Alpha 3 Country Code
+### PHONE NUMBER
+* Phone Number Type
+* Phone Number
+* Mobile Number  
+* Fixed Number  
+* Nullble Phone Number
+* Nullble Mobile Number  
+* Nullble Fixed Number
+### MISCELLANEOUS
 * Money
+* Nullable Money
 * UUID
 * Generatable UUID
-* RFC3339 datetime
-* Uri
-* Nullable Uri
-* Set Of Uri
 * Array Defined Enum
