@@ -31,18 +31,21 @@ final class SetOfEmailsWithAliasVO extends NonNullSet
      * alias2;email2\n
      * ....
      * aliasN;emailN
-     *
-     * @param string $string Formato stringa: "alias1;email1\nalias2;email2\n.....aliasN;emailN"
+     * NOTW: accept \r\n too (for windows)
+     * @param string $string Formato stringa: "alias1;email1\nalias2;email2\n.....aliasN;emailN" accepts \r\n too
      * @return static
      */
     public static function fromString(string $string): self
     {
         try {
-            //"alias1;email1\nalias2;email2\n.....aliasN;emailN"
-            $arr = explode("\n", $string);
+            $chars="\r\n";//"alias1;email1\r\nalias2;email2\r\n.....aliasN;emailN"
+            if (strpos($string, $chars)===false) {
+                $chars="\n";//"alias1;email1\nalias2;email2\n.....aliasN;emailN"
+            }
+            $arr = explode($chars, $string);
             if ($arr === false || !is_array($arr) || count($arr) < 1) {
                 throw new \InvalidArgumentException(
-                    'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"'
+                    'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN" or "alias1;email1\r\nalias2;email2\r\n....aliasN;emailN"'
                 );
             }
 
@@ -54,7 +57,7 @@ final class SetOfEmailsWithAliasVO extends NonNullSet
             return new static($arrEmailWithAlias);
         } catch (\Exception $exception) {
             throw new \InvalidArgumentException(
-                'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN"'
+                'Invalid email with alias string. Input must be in the form: "alias1;email1\nalias2;email2\n....aliasN;emailN" or "alias1;email1\r\nalias2;email2\r\n....aliasN;emailN"'
             );
         }
     }

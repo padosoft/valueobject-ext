@@ -45,6 +45,11 @@ final class SetOfEmailsWithAliasVOTest extends TestCase
         $this->assertEquals($test[0]->getAlias()->toNative(), 'test');
         $this->assertEquals($test[1]->getEmail()->toNative(), 'test2@test.com');
         $this->assertEquals($test[1]->getAlias()->toNative(), 'test2');
+        $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\r\ntest2;test2@test.com");
+        $this->assertEquals($test[0]->getEmail()->toNative(), 'test@test.com');
+        $this->assertEquals($test[0]->getAlias()->toNative(), 'test');
+        $this->assertEquals($test[1]->getEmail()->toNative(), 'test2@test.com');
+        $this->assertEquals($test[1]->getAlias()->toNative(), 'test2');
     }
 
     public function test_from_native_throws_exception_with_invalid_string()
@@ -63,11 +68,15 @@ final class SetOfEmailsWithAliasVOTest extends TestCase
     {
         $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\ntest2;test2@test.com");
         $this->assertEquals($test->toSimpleEmailArray(), ['test@test.com','test2@test.com']);
+        $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\r\ntest2;test2@test.com");
+        $this->assertEquals($test->toSimpleEmailArray(), ['test@test.com','test2@test.com']);
     }
 
     public function test_toSimpleAliasArray()
     {
         $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\ntest2;test2@test.com");
+        $this->assertEquals($test->toSimpleAliasArray(), ['test','test2']);
+        $test = SetOfEmailsWithAliasVO::fromString("test;test@test.com\r\ntest2;test2@test.com");
         $this->assertEquals($test->toSimpleAliasArray(), ['test','test2']);
     }
 }
