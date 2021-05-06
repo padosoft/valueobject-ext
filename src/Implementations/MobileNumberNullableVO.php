@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Funeralzone\ValueObjectExtensions\Implementations;
 
-use Funeralzone\ValueObjectExtensions\ComplexScalars\PhoneNumberAbstract;
+use Funeralzone\ValueObjectExtensions\ComplexScalars\PhoneNumberNullableAbstract;
 use Funeralzone\ValueObjects\ValueObject;
 
 /**
  * Class MobileNumberNullableVO
  * @package App\ValueObject
  */
-final class MobileNumberNullableVO extends PhoneNumberAbstract implements ValueObject
+final class MobileNumberNullableVO extends PhoneNumberNullableAbstract implements ValueObject
 {
 
     /**
