@@ -4,7 +4,7 @@ A collection of value objects based on funeralzone/valueobjects.
 
 ## Requirements ##
 
-Requires PHP >=7.1
+Requires PHP >=8.0
 
 ## Installation ##
 

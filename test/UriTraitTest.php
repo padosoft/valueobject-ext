@@ -12,31 +12,31 @@ declare(strict_types=1);
 
 namespace Funeralzone\ValueObjectExtensions\ComplexScalars;
 
+use Exception;
 use Funeralzone\ValueObjects\ValueObject;
-use League\Uri\Exception;
-use League\Uri\Http;
+use League\Uri\Uri;
 use PHPUnit\Framework\TestCase;
 
 class UriTraitTest extends TestCase
 {
     public function test_isnull_returns_false()
     {
-        $uri = new _UriTrait(Http::createFromString('http://example.com'));
+        $uri = new _UriTrait(Uri::createFromString('http://example.com'));
         $this->assertFalse($uri->isNull());
     }
 
     public function test_is_same_returns_true_when_values_match()
     {
-        $uri1 = new _UriTrait(Http::createFromString('http://example.com'));
-        $uri2 = new _UriTrait(Http::createFromString('http://example.com'));
+        $uri1 = new _UriTrait(Uri::createFromString('http://example.com'));
+        $uri2 = new _UriTrait(Uri::createFromString('http://example.com'));
 
         $this->assertTrue($uri1->isSame($uri2));
     }
 
     public function test_is_same_returns_false_when_values_mismatch()
     {
-        $uri1 = new _UriTrait(Http::createFromString('http://example.com'));
-        $uri2 = new _UriTrait(Http::createFromString('https://example.com'));
+        $uri1 = new _UriTrait(Uri::createFromString('http://example.com'));
+        $uri2 = new _UriTrait(Uri::createFromString('https://example.com'));
 
         $this->assertFalse($uri1->isSame($uri2));
     }
@@ -46,7 +46,7 @@ class UriTraitTest extends TestCase
         $uri = 'http://example.com';
 
         $test = _UriTrait::fromNative($uri);
-        $this->assertSame('http://example.com/', $test->toNative());
+        $this->assertSame('http://example.com', $test->toNative());
     }
 
     public function test_from_native_throws_exception_with_invalid_string()
@@ -60,7 +60,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withScheme('https');
 
-        $this->assertSame('https://example.com/', $changed->toNative());
+        $this->assertSame('https://example.com', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -69,7 +69,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withUserInfo('mike');
 
-        $this->assertSame('http://mike@example.com/', $changed->toNative());
+        $this->assertSame('http://mike@example.com', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -78,7 +78,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withUserInfo('mike', 'password123');
 
-        $this->assertSame('http://mike:password123@example.com/', $changed->toNative());
+        $this->assertSame('http://mike:password123@example.com', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -87,7 +87,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withHost('boom.com');
 
-        $this->assertSame('http://boom.com/', $changed->toNative());
+        $this->assertSame('http://boom.com', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -96,7 +96,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withPort(8080);
 
-        $this->assertSame('http://example.com:8080/', $changed->toNative());
+        $this->assertSame('http://example.com:8080', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -114,7 +114,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withQuery('foo=bar');
 
-        $this->assertSame('http://example.com/?foo=bar', $changed->toNative());
+        $this->assertSame('http://example.com?foo=bar', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 
@@ -123,7 +123,7 @@ class UriTraitTest extends TestCase
         $initial = _UriTrait::fromNative('http://example.com');
         $changed = $initial->withFragment('foo');
 
-        $this->assertSame('http://example.com/#foo', $changed->toNative());
+        $this->assertSame('http://example.com#foo', $changed->toNative());
         $this->assertNotSame($initial, $changed);
     }
 }

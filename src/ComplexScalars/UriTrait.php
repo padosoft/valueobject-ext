@@ -12,18 +12,17 @@ declare(strict_types=1);
 namespace Funeralzone\ValueObjectExtensions\ComplexScalars;
 
 use Funeralzone\ValueObjects\ValueObject;
-use League\Uri\Exception;
-use League\Uri\Factory;
+use League\Uri\Uri;
 use Psr\Http\Message\UriInterface;
 
 trait UriTrait
 {
     /**
-     * @var UriInterface
+     * @var Uri
      */
-    protected $uri;
+    protected Uri $uri;
 
-    public function __construct(UriInterface $uri)
+    public function __construct(Uri $uri)
     {
         $this->uri = $uri;
     }
@@ -49,7 +48,7 @@ trait UriTrait
     /**
      * @param string $native
      *
-     * @throws Exception
+     * @throws \Exception
      * @return static
      */
     public static function fromNative($native)
@@ -58,8 +57,7 @@ trait UriTrait
             throw new \InvalidArgumentException('Can only instantiate this object with a string.');
         }
 
-        $factory = new Factory();
-        $uri     = $factory->create($native);
+        $uri     = Uri::createFromString($native);
 
         return new static($uri);
     }
