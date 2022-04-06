@@ -2,27 +2,21 @@
 
 declare(strict_types=1);
 
-/**
- * Created by PhpStorm.
- * User: kevbaldwyn
- * Date: 14/02/2018
- * Time: 14:58
- */
-
 namespace Funeralzone\ValueObjectExtensions\ComplexScalars;
 
 use Funeralzone\ValueObjects\ValueObject;
+use League\Uri\Http;
 use League\Uri\Uri;
 use Psr\Http\Message\UriInterface;
 
 trait UriTrait
 {
     /**
-     * @var Uri
+     * @var UriInterface
      */
-    protected Uri $uri;
+    protected UriInterface $uri;
 
-    public function __construct(Uri $uri)
+    public function __construct(UriInterface $uri)
     {
         $this->uri = $uri;
     }
@@ -57,7 +51,8 @@ trait UriTrait
             throw new \InvalidArgumentException('Can only instantiate this object with a string.');
         }
 
-        $uri     = Uri::createFromString($native);
+        $uriTmp     = Uri::createFromString($native);
+        $uri     = Http::createFromUri($uriTmp);
 
         return new static($uri);
     }

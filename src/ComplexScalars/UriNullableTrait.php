@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Funeralzone\ValueObjectExtensions\ComplexScalars;
 
 use Funeralzone\ValueObjects\ValueObject;
-use League\Uri\Factory;
+use League\Uri\Http;
+use League\Uri\Uri;
 use Psr\Http\Message\UriInterface;
 
 trait UriNullableTrait
@@ -55,10 +56,10 @@ trait UriNullableTrait
             throw new \InvalidArgumentException('Can only instantiate this object with a string.');
         }
 
-        $factory = new Factory();
-        $uri = $factory->create($native);
+        $uriTmp     = Uri::createFromString($native);
+        $uri     = Http::createFromUri($uriTmp);
 
-        return new static($native);
+        return new static($uri);
     }
 
     /**

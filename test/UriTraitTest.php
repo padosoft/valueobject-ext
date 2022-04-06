@@ -14,6 +14,7 @@ namespace Funeralzone\ValueObjectExtensions\ComplexScalars;
 
 use Exception;
 use Funeralzone\ValueObjects\ValueObject;
+use League\Uri\Http;
 use League\Uri\Uri;
 use PHPUnit\Framework\TestCase;
 
@@ -21,22 +22,22 @@ class UriTraitTest extends TestCase
 {
     public function test_isnull_returns_false()
     {
-        $uri = new _UriTrait(Uri::createFromString('http://example.com'));
+        $uri = new _UriTrait(Http::createFromUri(Uri::createFromString('http://example.com')));
         $this->assertFalse($uri->isNull());
     }
 
     public function test_is_same_returns_true_when_values_match()
     {
-        $uri1 = new _UriTrait(Uri::createFromString('http://example.com'));
-        $uri2 = new _UriTrait(Uri::createFromString('http://example.com'));
+        $uri1 = new _UriTrait(Http::createFromUri(Uri::createFromString('http://example.com')));
+        $uri2 = new _UriTrait(Http::createFromUri(Uri::createFromString('http://example.com')));
 
         $this->assertTrue($uri1->isSame($uri2));
     }
 
     public function test_is_same_returns_false_when_values_mismatch()
     {
-        $uri1 = new _UriTrait(Uri::createFromString('http://example.com'));
-        $uri2 = new _UriTrait(Uri::createFromString('https://example.com'));
+        $uri1 = new _UriTrait(Http::createFromUri(Uri::createFromString('http://example.com')));
+        $uri2 = new _UriTrait(Http::createFromUri(Uri::createFromString('https://example.com')));
 
         $this->assertFalse($uri1->isSame($uri2));
     }
