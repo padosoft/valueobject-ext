@@ -34,13 +34,13 @@ final class EmailWithAliasTest extends TestCase
 
     public function test_from_native_throws_exception_with_invalid_string()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         EmailWithAliasVO::fromNative(['invalid']);
     }
 
     public function test_from_string_throws_exception_with_invalid_string()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(\TypeError::class);
         EmailWithAliasVO::fromString('invalid');
     }
 }
