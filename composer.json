@@ -12,7 +12,7 @@
     "php": ">=8.0",
     "funeralzone/valueobjects": ">=0.0",
     "ramsey/uuid": "^4.3",
-    "league/uri": "^6.5",
+    "league/uri": "^6.5|^7.5",
     "moneyphp/money": "^4.0",
     "giggsey/libphonenumber-for-php": "^8.12"
   },
