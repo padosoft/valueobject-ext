@@ -41,7 +41,6 @@ final class SetOfUriVO extends NonNullSet
             }
 
             return new static($arrVO);
-
         } catch (\Exception $exception) {
             throw new \InvalidArgumentException('Invalid uri string. Input must be in the form: "uri1;uri2;.....uriN"');
         }

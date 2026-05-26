@@ -51,10 +51,11 @@ trait UriTrait
             throw new \InvalidArgumentException('Can only instantiate this object with a string.');
         }
 
-        $uriTmp     = Uri::createFromString($native);
-        $uri     = Http::createFromUri($uriTmp);
+        if (method_exists(Http::class, 'new')) {
+            return new static(call_user_func([Http::class, 'new'], $native));
+        }
 
-        return new static($uri);
+        return new static(Http::createFromUri(Uri::createFromString($native)));
     }
 
     /**
@@ -89,7 +90,7 @@ trait UriTrait
      *
      * @return static
      */
-    public function withUserInfo(string $user, string $password = null)
+    public function withUserInfo(string $user, ?string $password = null)
     {
         return new static($this->uri->withUserInfo($user, $password));
     }

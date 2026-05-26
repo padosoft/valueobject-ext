@@ -85,5 +85,4 @@ trait EmailTrait
 
         return DomainVO::specifyType($domain);
     }
-
 }

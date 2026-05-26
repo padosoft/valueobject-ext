@@ -40,7 +40,6 @@ final class SetOfEmailsVO extends NonNullSet
             }
 
             return new static($arrEmailsVO);
-
         } catch (\Exception $exception) {
             throw new \InvalidArgumentException('Invalid email with alias string. Input must be in the form: "email1;email2;.....emailN"');
         }

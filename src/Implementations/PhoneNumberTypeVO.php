@@ -66,5 +66,4 @@ final class PhoneNumberTypeVO implements ValueObject
 
     // Standard Rate
     public const STANDARD_RATE = 30;
-
 }

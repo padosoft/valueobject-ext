@@ -55,6 +55,10 @@ final class EmailWithAliasVO implements ValueObject
     public static function fromNative($native)
     {
         try {
+            if (!is_array($native) || !array_key_exists('email', $native) || !array_key_exists('alias', $native)) {
+                throw new \TypeError();
+            }
+
             return new static(
                 EmailVO::fromNative($native['email']),
                 StringVO::fromNative($native['alias']),
@@ -74,6 +78,10 @@ final class EmailWithAliasVO implements ValueObject
     {
         try {
             $item = explode(';', $string);
+            if (count($item) !== 2) {
+                throw new \TypeError();
+            }
+
             return new static(
                 EmailVO::fromNative($item[1]),
                 StringVO::fromNative($item[0])

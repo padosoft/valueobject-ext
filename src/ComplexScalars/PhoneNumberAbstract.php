@@ -27,7 +27,6 @@ abstract class PhoneNumberAbstract
         $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
         try {
             $this->phoneNumber = $phoneUtil->parse($phoneNumber);
-
         } catch (\libphonenumber\NumberParseException $e) {
             throw new \InvalidArgumentException('Invalid phone number string.');
         }

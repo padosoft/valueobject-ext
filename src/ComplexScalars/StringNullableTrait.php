@@ -37,7 +37,7 @@ trait StringNullableTrait
      */
     public function isSame(ValueObject $object): bool
     {
-        if($this->string===null || $object->string===null){
+        if ($this->string===null || $object->string===null) {
             return $this->string===$object->string;
         }
         return ($this->toNative() === $object->toNative());
